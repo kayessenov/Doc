@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Docmed</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{'/img/favicon.png'}">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" th:href="@{'/css/bootstrap.min.css'}">
+    <link rel="stylesheet" th:href="@{'/css/owl.carousel.min.css'}">
+    <link rel="stylesheet" th:href="@{'/css/magnific-popup.css'}">
+    <link rel="stylesheet" th:href="@{'/css/font-awesome.min.css'}">
+    <link rel="stylesheet" th:href="@{'/css/themify-icons.css'}">
+    <link rel="stylesheet" th:href="@{'/css/nice-select.css'}">
+    <link rel="stylesheet" th:href="@{'/css/flaticon.css'}">
+    <link rel="stylesheet" th:href="@{'/css/gijgo.css'}">
+    <link rel="stylesheet" th:href="@{'/css/animate.css'}">
+    <link rel="stylesheet" th:href="@{'/css/slicknav.css'}">
+    <link rel="stylesheet" th:href="@{'/css/style.css'}">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+<body>
+<form th:action="@{'/signout'}" method="post" id="signOutFormId">
+
+</form>
+<script type="text/javascript">
+    function signOut(){
+        document.getElementById("signOutFormId").submit();
+    }
+</script>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div class="header-top_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-2 col-md-2 ">
+                            <div class="social_media_links">
+                                <a href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-md-10">
+                            <div class="short_contact_list">
+                                <ul>
+                                    <li sec:authorize="isAuthenticated()"><a th:href="@{'/profile'}" th:text="${currentUser.getEmail()}"></a></li>
+                                    <li sec:authorize="hasAnyRole('ROLE_MODERATOR')"><a class="active" th:href="@{'/admin'}">Admin Panel</a></li>
+                                    <li sec:authorize="isAuthenticated()"><a class="active" href="JavaScript:void(0)" onclick="signOut()">Sign out</a></li>
+                                    <li sec:authorize="isAnonymous()"><a class="active" th:href="@{'/signin'}">Login</a></li>
+
+<!--                                    <li sec:authorize="isAuthenticated()"><a class="active" th:href="@{'/profile'}" th:text="${currentUser.getEmail()}"></a></li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sticky-header" class="main-header-area">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-2">
+                            <div class="logo">
+                                <a th:href="@{'/'}">
+                                    <img th:src="@{'/img/logo.png'}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a class="active" th:href="@{'/'}">home</a></li>
+                                        <li><a th:href="@{'/Department'}">Department</a></li>
+                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a th:href="@{'/Blog'}">blog</a></li>
+                                                <li><a th:href="@{'/Doctors'}">Doctors</a></li>
+                                                <li><a th:href="@{'/Contact'}">Contact</a></li>
+<!--                                                <li><a th:href="@{'/SingleBlog'}">single-blog</a></li>-->
+                                            </ul>
+                                        </li>
+<!--                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>-->
+<!--                                            <ul class="submenu">-->
+<!--                                                <li><a th:href="@{'/Elements'}">elements</a></li>-->
+<!--                                                <li><a th:href="@{'/About'}">about</a></li>-->
+<!--                                            </ul>-->
+<!--                                        </li>-->
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 d-none d-lg-block" sec:authorize="isAuthenticated()">
+                            <div class="Appointment">
+                                <div class="book_btn d-none d-lg-block">
+                                    <a class="popup-with-form" href="#test-form">Make an Appointment</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+<div layout:fragment="mainContainer">
+
+
+</div>
+    <!-- footer start -->
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-md-6 col-lg-4">
+                        <div class="footer_widget">
+                            <div class="footer_logo">
+                                <a href="#">
+                                    <img th:src="@{'/img/footer_logo.png'}" alt="">
+                                </a>
+                            </div>
+                            <p>
+                                Firmament morning sixth subdue darkness
+                                creeping gathered divide.
+                            </p>
+                            <div class="socail_links">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-twitter-alt"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 offset-xl-1 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Departments
+                            </h3>
+                            <ul>
+                                <li th:each="dp : ${DepList}"><a th:href="@{'/element/department/'+${dp.id}}" th:text="${dp.name}"></a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Useful Links
+                            </h3>
+                            <ul>
+                                <li><a th:href="@{'/About'}">About</a></li>
+                                <li><a th:href="@{'/Blog'}">Blog</a></li>
+                                <li><a th:href="@{'/About'}">About</a></li>
+                                <li><a th:href="@{'/Contact'}"> Contact</a></li>
+                                <li><a th:href="@{'/Department'}"> Appointment</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Address
+                            </h3>
+                            <p>
+                                200, D-block, Kazakhstan, Almaty, ALA <br>
+                                +7775 777 77 77<br>
+                                docmed@contact.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end  -->
+<form id="test-form" class="white-popup-block mfp-hide" th:action="@{'/main'}" method="post">
+    <div class="popup_box ">
+        <div class="popup_inner">
+            <h3>Make an Appointment</h3>
+
+            <div class="row">
+                <div class="col-xl-6">
+                    <input id="datepicker" placeholder="Pick date" name="datepick">
+                </div>
+                <div class="col-xl-6">
+                    <input id="datepicker2" placeholder="Suitable time" name="datepick2">
+                </div>
+                <div class="col-xl-6">
+                    <select class="form-select wide" id="default-select" name = "dpid">
+                        <option data-display="Select Department" th:each="dp : ${DepList}" th:text="${dp.name}" th:value="${dp.id}"></option>
+                    </select>
+                </div>
+                <div class="col-xl-6">
+                    <select class="form-select wide" id="default-select" name="docid">
+                        <option data-display="Doctors" th:each="d : ${docs}" th:text="${d.name}" th:value="${d.id}"></option>
+                    </select>
+                </div>
+                <div class="col-xl-6">
+                    <input type="text" placeholder="Name" name="name">
+                </div>
+                <div class="col-xl-6">
+                    <input type="text" placeholder="Phone no." name="number">
+                </div>
+                <div class="col-xl-12">
+                    <input type="email" placeholder="Email" name="email">
+                </div>
+                <div class="col-xl-12">
+                    <button type="submit" class="boxed-btn3">Confirm</button>
+                </div>
+            </div>
+
+        </div>
+    </div></form>
+</body>
+<script th:src="@{'/js/vendor/modernizr-3.5.0.min.js'}"></script>
+<script th:src="@{'/js/vendor/jquery-1.12.4.min.js'}"></script>
+<script th:src="@{'/js/popper.min.js'}"></script>
+<script th:src="@{'/js/bootstrap.min.js'}"></script>
+<script th:src="@{'/js/owl.carousel.min.js'}"></script>
+<script th:src="@{'/js/isotope.pkgd.min.js'}"></script>
+<script th:src="@{'/js/ajax-form.js'}"></script>
+<script th:src="@{'/js/waypoints.min.js'}"></script>
+<script th:src="@{'/js/jquery.counterup.min.js'}"></script>
+<script th:src="@{'/js/imagesloaded.pkgd.min.js'}"></script>
+<script th:src="@{'/js/scrollIt.js'}"></script>
+<script th:src="@{'/js/jquery.scrollUp.min.js'}"></script>
+<script th:src="@{'/js/wow.min.js'}"></script>
+<script th:src="@{'/js/nice-select.min.js'}"></script>
+<script th:src="@{'/js/jquery.slicknav.min.js'}"></script>
+<script th:src="@{'/js/jquery.magnific-popup.min.js'}"></script>
+<script th:src="@{'/js/plugins.js'}"></script>
+<script th:src="@{'/js/gijgo.min.js'}"></script>
+<!--contact js-->
+<script th:src="@{'/js/contact.js'}"></script>
+<script th:src="@{'/js/jquery.ajaxchimp.min.js'}"></script>
+<script th:src="@{'/js/jquery.form.js'}"></script>
+<script th:src="@{'/js/jquery.validate.min.js'}"></script>
+<script th:src="@{'/js/mail-script.js'}"></script>
+
+<script th:src="@{'/js/main.js'}"></script>
+<script>
+    $('#datepicker').datepicker({
+        iconsLibrary: 'fontawesome',
+        icons: {
+            rightIcon: '<span class="fa fa-caret-down"></span>'
+        }
+    });
+    $('#datepicker2').datepicker({
+        iconsLibrary: 'fontawesome',
+        icons: {
+            rightIcon: '<span class="fa fa-caret-down"></span>'
+        }
+
+    });
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+</script>
+</html>

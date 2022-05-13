@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="layout/main.html">
+<body>
+<div layout:fragment="mainContainer">
+    <div class="container">
+
+        <div class="row">
+
+                <div class="card flex-md-row mb-4 shadow-sm h-md-250" th:each="bl : ${allblogs}">
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <strong class="d-inline-block mb-2 text-primary" th:text="${bl.getUsers().getEmail()}"></strong>
+                        <h3 class="mb-0" th:text="${bl.getShort_title()}">
+                        </h3>
+                        <div class="mb-1 text-muted" th:text="${bl.createdAt}"></div>
+                        <p class="card-text mb-auto" th:text="${bl.description}"></p>
+                    </div>
+                    <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" th:src="@{${bl.image!=null?'/blogAva/'+bl.image+'.jpg':'/blogAva/default.png'}}" data-holder-rendered="true">
+                </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+
+</html>

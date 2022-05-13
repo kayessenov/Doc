@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout/main}" >
+<body>
+<div layout:fragment="mainContainer">
+    <div class="container">
+
+            <div class="row">
+                <div class="col-lg-4 mt-3 mb-2" th:each="dp : ${deps}">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140" th:src="@{${dp.image!=null?'/images/'+dp.image+'.jpg':'/images/default.png'}}"></img>
+
+                    <h2 th:text="${dp.getName()}"></h2>
+                    <p th:text="${dp.getShortDesc()}"></p>
+                    <p><a class="btn btn-primary" th:href="@{'/admin/viewDepartments/departments/'+${dp.id}}">View details »</a>
+                    <form method="post" th:action="@{'/admin/removedepartment'}">
+                        <input type="hidden" th:value="${dp.id}" name="id">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                    </p>
+                </div>
+            </div>
+
+
+    </div>
+</div>
+</body>
+
+</html>

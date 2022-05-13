@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout/main}" >
+<body>
+<div layout:fragment="mainContainer">
+    <div class="container mt-5 mb-5">
+        <div th:each="dp : ${dep}">
+
+            <div class="row featurette mt-5 mb-5">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading" th:text="${dp.name}"></h2>
+                    <span class="text-muted" th:text="${dp.getShortDesc()}"></span>
+                    <p class="lead" th:text="${dp.getDescription()}"></p>
+                </div>
+                <div class="col-md-5 order-md-1">
+                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" th:src="@{${dp.image!=null?'/images/'+dp.image+'.jpg':'/images/default.png'}}"></img>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+</body>
+
+</html>

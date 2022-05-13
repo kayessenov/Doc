@@ -1,0 +1,122 @@
+<!doctype html>
+<html class="no-js" lang="zxx"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="layout/main.html">
+<body>
+<div layout:fragment="mainContainer">
+  <!-- bradcam_area_start  -->
+  <div class="bradcam_area breadcam_bg bradcam_overlay">
+      <div class="container">
+          <div class="row">
+              <div class="col-xl-12">
+                  <div class="bradcam_text">
+                      <h3>Blog detials</h3>
+                      <p><a href="index.html">Home /</a> Blog detials</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- bradcam_area_end  -->
+
+   <!--================Blog Area =================-->
+   <section class="blog_area single-post-area section-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-8 posts-list" th:each="bl : ${blogsget}">
+               <div class="single-post">
+                  <div class="feature-img">
+                     <img class="img-fluid" th:src="@{${bl.image!=null?'/blogAva/'+bl.image+'.jpg':'/blogAva/default.png'}}" alt="">
+                  </div>
+                  <div class="blog_details">
+                     <h2 th:text="${bl.title}">
+                     </h2>
+                     <p class="excert" th:text="${blogsget.description}">
+                     </p>
+                     <div class="quote-wrapper">
+                        <div class="quotes" th:text="${blogsget.short_title}">
+                           MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                           should have to spend money on boot camp when you can get the MCSE study materials yourself at
+                           a fraction of the camp price. However, who has the willpower to actually sit through a
+                           self-imposed MCSE training.
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="navigation-top">
+                  <div class="d-sm-flex justify-content-between text-center">
+                     <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
+                        people like this</p>
+                     <div class="col-sm-4 text-center my-2 my-sm-0">
+                        <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
+                     </div>
+                     <ul class="social-icons">
+                        <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                     </ul>
+                  </div>
+
+               <div class="comments-area">
+
+
+                  <h4>Comments</h4>
+
+
+                  <div class="comment-list" th:each="cm : ${comments}">
+                     <div class="single-comment justify-content-between d-flex">
+                        <div class="user justify-content-between d-flex">
+                           <div class="thumb">
+                              <img th:src="@{${cm.getUsers().getAvatar()!=null?'/avatar/'+cm.getUsers().getAvatar()+'.jpg':'/avatar/default.png'}}" alt="">
+                           </div>
+                           <div class="desc">
+                              <p class="comment" th:text="${cm.comment}">
+                              </p>
+                              <div class="d-flex justify-content-between">
+                                 <div class="d-flex align-items-center">
+                                    <h5>
+                                       <a href="#" th:text="${cm.getUsers().getFullname()}"></a>
+                                    </h5>
+                                    <p class="date" th:text="${cm.createdAt.toLocaleString()}"> </p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+
+               </div>
+
+               <div class="comment-form">
+                  <h4>Leave a Reply</h4>
+                  <form class="form-contact comment_form" method="post" th:action="@{'/addcomment'}" id="commentForm">
+                     <input type="hidden" name = "blogid" th:value="${blogsget.id}">
+                     <input type="hidden" name = "userid" th:value="${currentUser.id}">
+                     <div class="row">
+                        <div class="col-12">
+                           <div class="form-group">
+                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
+                                 placeholder="Write Comment"></textarea>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            </div>
+      </div>
+      </div>
+   </section>
+   <!--================ Blog Area end =================-->
+</div>
+
+
+</body>
+
+</html>

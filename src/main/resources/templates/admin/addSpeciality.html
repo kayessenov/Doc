@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="layout/main.html">
+<body>
+<div layout:fragment="mainContainer">
+  <div class="container mt-5 mb-5">
+    <form method="post" th:action="@{'/admin/addSpec'}">
+
+        <div class="mt-5 mb-5">
+          <input type="text" name="name" placeholder="Speciality" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Speciality'" required="" class="single-input">
+        </div>
+
+        <div class="mt-5 mb-5">
+          <input type="text" name="code_name" placeholder="Short Code" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Code Name'" required="" class="single-input">
+        </div>
+        <button class="btn btn-success mt-1 mb-5">Add</button>
+    </form>
+    <div></div>
+
+  </div>
+</div>
+</body>
+
+</html>

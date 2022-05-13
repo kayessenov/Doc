@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout/main}" >
+<body>
+<div layout:fragment="mainContainer">
+    <div class="container" th:each="dp : ${dep}">
+
+    <form method="post" th:action="${'/admin/savedepdetails'}" enctype="multipart/form-data">
+        <div class="featurette mt-5 mb-5 mx-auto">
+            <div class="col-md-6 mx-auto order-md-1">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" th:src="@{${dp.image!=null?'/images/'+dp.image+'.jpg':'/images/default.png'}}"></img>
+                <div class="custom-file mt-2">
+                    <input type="file" name="department_img" class="custom-file-input" id="inputGroupFile01" th:value="${dp.image}" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+            </div>
+            <input type="hidden" th:value="${dp.id}" name = "id" class="mt-2 mb-2">
+            <div class="col-md-7 order-md-2 mt-5 mb-5 mx-auto">
+                <input class="featurette-heading form-control mt-2 mb-2" name="name" id="name" type="text" th:value="${dp.getName()}"></input>
+                <input class="text-muted form-control" name="shortDesc" th:value="${dp.getShortDesc()}"></input>
+                    <div class="form-group">
+                        <textarea class="form-control w-100 mt-2 mb-2" name="description" id="comment" cols="30" rows="9" th:text="${dp.getDescription()}"></textarea>
+                    </div>
+                </p>
+            </div>
+            <div class="mx-auto col-6">
+                <button class="btn btn-dark">SAVE</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+<form method="post" th:action="@{'/admin/deletedepartment'}">
+    <input type="hidden" name = "id" th:value="${dep.id}">
+    <div class="modal fade" id="staticBackdrop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+
+</html>

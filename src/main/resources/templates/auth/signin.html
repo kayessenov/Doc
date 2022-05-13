@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/main}" >
+<body>
+<div layout:fragment="mainContainer">
+    <div class="mb-5 mt-5"><br></div>
+    <div class="col-3 mx-auto mt-5 mb-5">
+        <form class="form-signin" method="post" th:action="@{'/auth'}">
+            <h2 class="form-signin-heading">Пожалуйста войдите</h2>
+            <p>
+                <label for="username" class="sr-only">Емайл</label>
+                <input type="email" id="username" name="user_email" class="form-control" placeholder="Email" required autofocus>
+            </p>
+            <p>
+                <label for="password" class="sr-only">Пароль</label>
+                <input type="password" id="password" name="user_password" class="form-control" placeholder="Password" required>
+            </p>
+            <input name="_csrf" type="hidden" value="1ac4c8eb-fadb-4a72-91eb-ea5aed337fe9" />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Воити</button>
+            <p class="card-text mt-3" style="text-align: center">или</p>
+            <a th:href="@{'/signup'}" class="nav-link link-dark px-2 mt-2 mb-5" style="text-align: center" type="submit">Регистрация</a>
+        </form>
+        <div class="mb-5 mt-5"><br></div>
+    </div>
+</div>
+</body>
+</html>

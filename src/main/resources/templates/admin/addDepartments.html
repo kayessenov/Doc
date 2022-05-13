@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout/main}" >
+<body>
+<div layout:fragment="mainContainer">
+    <div class="container mt-5 mb-5">
+            <form th:action="@{'/admin/formdepartment'}" enctype="multipart/form-data" method="post">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="department_img" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <input class="form-control" name="short_desc" id="name" type="text" placeholder="Short title">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <textarea class="form-control w-100" name="description" id="comment" cols="30" rows="9" placeholder="Write description"></textarea>
+                        </div>
+                    </div>
+                    <div class="mx-auto"><button class="btn btn-success">Add Department</button></div>
+                </div>
+            </form>
+    </div>
+</div>
+</body>
+
+</html>

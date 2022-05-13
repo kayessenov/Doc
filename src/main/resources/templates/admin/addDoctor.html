@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout/main}" >
+<body>
+<div layout:fragment="mainContainer">
+    <div class="container mt-5 mb-5">
+
+        <form method="post" th:action="${'/admin/addDoctorForm'}" enctype="multipart/form-data">
+            <div class="row">
+                <div class="mx-auto mt-5 mb-5">
+                    <div class="mt-10 col-9">
+                        <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required="" class="single-input">
+                    </div>
+
+                    <div class="mt-10 col-9">
+                        <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required="" class="single-input">
+                    </div>
+                    <div class="form-group mb-5">
+                            <select class="form-control col-8 m-5" name="spec_id">
+                                <option th:each="cd : ${spec}" th:text="${cd.name + ' - ' + cd.short_code}" th:value="${cd.id}"></option>
+                            </select>
+                    </div>
+                    <div class="custom-file mb-3">
+                        <input type="file" name="doc_img" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                    <div class="mb-3 d-block mt-3">
+                        <button class="btn btn-success">Add Doctor</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+
+</html>
